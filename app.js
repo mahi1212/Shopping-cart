@@ -20,6 +20,8 @@ function updateCaseNumber(product, isIncreasing){
             casePrice.innerText = parseFloat(casePriceText) - 1219 ;
         }
     }
+    // Calculate total
+    totalCalculate();    
 }
 
 // phone function
@@ -38,5 +40,25 @@ document.getElementById('case-plus').addEventListener('click', function(){
 document.getElementById('case-minus').addEventListener('click', function(){
     updateCaseNumber('case',false)
 })
+
+// Total calculation
+function totalCalculate(){
+    const phonePrice = document.getElementById('phone-price')
+    const casePrice = document.getElementById('case-price')
+    const phonePriceText = phonePrice.innerText
+    const casePriceText = casePrice.innerText
+    // updating total price
+    const totalPrice = parseFloat(phonePriceText) + parseFloat(casePriceText) ;
+    document.getElementById('sub-total').innerText = totalPrice;
+    // updating tax at 7% rate
+    const tax = totalPrice / 7;
+    document.getElementById('tax-amount').innerText = Math.round(tax);
+    // setting total amount
+    const textAmount = document.getElementById('tax-amount').innerText;
+    const textAmountValue= parseFloat(textAmount);
+
+    document.getElementById('total-price').innerText = textAmountValue + totalPrice;
+
+}
 
 
